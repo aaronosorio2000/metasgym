@@ -1,13 +1,19 @@
+import styles from "./Header.module.css";
+import { ReactComponent as ProfileSVG } from "../../img/perfil.svg";
+import Link from "./link";
+
 function Header() {
   return (
-    <div>
-      <div>
-        <a href="/">Always Mamadisimos</a>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <a className={styles.title} href="/">
+          Always Mamadisimos
+        </a>
       </div>
-      <nav className="flex">
-        <a href="/profile">Perfil</a>
+      <nav>
+        <Link href="/profile" Icon={ProfileSVG} />
       </nav>
-    </div>
+    </header>
   );
 }
 
