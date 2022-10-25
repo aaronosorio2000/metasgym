@@ -1,5 +1,6 @@
 import "./App.css";
-import Goal from "./components/list/Goal";
+import List from "./components/list/list";
+import Details from "./components/new/Details";
 import Footer from "./components/shared/footer";
 import Header from "./components/shared/header";
 import Main from "./components/shared/main";
@@ -9,7 +10,8 @@ function App() {
     <div className="App">
       <Header></Header>
       <Main>
-        <Goal></Goal>
+        {/* <List></List> */}
+        <Details></Details>
       </Main>
       <Footer></Footer>
     </div>
