@@ -1,3 +1,5 @@
+import styles from "./Details.module.css";
+
 function Details() {
   const iconos = [
     "🏋️",
@@ -14,18 +16,18 @@ function Details() {
   ];
 
   return (
-    <div>
+    <div className="card">
       <form>
-        <label>
+        <label className="label">
           Describe tu Meta
-          <input placeholder="ej. correr 30min" />
+          <input className="input" placeholder="ej. correr 30min" />
         </label>
-        <label>
+        <label className="label">
           ¿Con que frecuencia deseas cumplir tu meta?{" "}
           <span>(ej. 1 vez por semana)</span>
-          <div>
-            <input type="number" />
-            <select>
+          <div className="flex mb-6">
+            <input type="number" className="input mr-6" />
+            <select className="input">
               <option value="día">al día</option>
               <option value="semana">a la semana</option>
               <option value="mes">al mes</option>
@@ -33,19 +35,19 @@ function Details() {
             </select>
           </div>
         </label>
-        <label>
+        <label className="label">
           ¿Cuantas veces deseas completar esta meta?
-          <input type="number" />
+          <input className="input" type="number" />
         </label>
-        <label>
+        <label className="label">
           ¿Tienes una fehca límite?
-          <input type="date" />
+          <input className="input" type="date" />
         </label>
-        <label>
+        <label className="label">
           ¿Cuantas veces haz completado ya esta meta?
-          <input type="number" />
+          <input className="input" type="number" />
         </label>
-        <label>
+        <label className="label">
           Escoge el icono para la meta
           <select>
             {iconos.map((opcion) => (
@@ -54,9 +56,9 @@ function Details() {
           </select>
         </label>
       </form>
-      <div>
-        <button>Crear</button>
-        <button>Cancelar</button>
+      <div className={styles.buttons}>
+        <button className="button button--black">Crear</button>
+        <button className="button button--gray">Cancelar</button>
       </div>
     </div>
   );

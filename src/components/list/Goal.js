@@ -23,7 +23,7 @@ function Goal({ icon, events, period, details, completed, target }) {
             ></div>
           </div>
         </div>
-        <button className="botton botton--gray">Completado</button>
+        <button className="button button--gray">Completado</button>
       </div>
     </div>
   );

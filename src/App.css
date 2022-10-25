@@ -1,19 +1,27 @@
 .card {
-  @apply rounded-xl m-4 text-gray-700 text-xs mx-4 nm-flat-white;
+  @apply rounded-xl m-4 text-gray-700 text-xs mx-4 nm-flat-white overflow-hidden;
 }
 
-.botton {
+.button {
   @apply text-sm font-bold py-1 px-4 rounded-full;
 }
 
-.botton--black {
+.button--black {
   @apply text-white nm-flat-gray-700 hover:bg-gray-800;
 }
 
-.botton--red {
+.button--red {
   @apply text-red-500 nm-flat-gray-100 border bg-red-700;
 }
 
-.botton--gray {
+.button--gray {
   @apply nm-flat-gray-100 hover:bg-gray-200;
+}
+
+.label {
+  @apply block uppercase text-xs font-bold mb-6 px-1;
+}
+
+.input {
+  @apply nm-inset-gray-100 w-full border rounded-xl px-2;
 }
