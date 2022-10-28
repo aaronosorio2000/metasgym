@@ -1,11 +1,13 @@
 import styles from "./Link.module.css";
-function Link({ Icon, text, href }) {
+import { Link } from "react-router-dom";
+
+function Vinculo({ Icon, text, to }) {
   return (
-    <a href={href} className={styles.link}>
+    <Link to={to} className={styles.link}>
       <Icon className={styles.icon} />
       {text && <span className={styles.text}>{text}</span>}
-    </a>
+    </Link>
   );
 }
 
-export default Link;
+export default Vinculo;

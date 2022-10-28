@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 import { ReactComponent as ProfileSVG } from "../../img/perfil.svg";
-import Link from "./link";
+import Vinculo from "./link";
 
 function Header() {
   return (
@@ -11,7 +11,7 @@ function Header() {
         </a>
       </div>
       <nav>
-        <Link href="/profile" Icon={ProfileSVG} />
+        <Vinculo to="/profile" Icon={ProfileSVG} />
       </nav>
     </header>
   );
