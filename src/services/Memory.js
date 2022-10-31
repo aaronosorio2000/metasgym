@@ -1,42 +1,15 @@
 import { createContext, useReducer } from "react";
 
-const listMock = [
-  {
-    id: "1",
-    details: "Levantar 100kg",
-    period: "Mensual",
-    events: 1,
-    icon: "🏋️",
-    goal: 4,
-    deadline: "2030-01-01",
-    completed: 2,
-  },
-  {
-    id: "2",
-    details: "Corre 5 veces",
-    period: "Semanal",
-    events: 1,
-    icon: "🏋️",
-    goal: 5,
-    deadline: "2030-01-01",
-    completed: 1,
-  },
-  {
-    id: "3",
-    details: "Seguir la dieta",
-    period: "Semanal",
-    events: 1,
-    icon: "🏋️",
-    goal: 7,
-    deadline: "2030-01-01",
-    completed: 5,
-  },
-];
-
+// const memory = localStorage.getItem("goal");
 const initialStatus = {
   order: [],
   objects: {},
 };
+//   ? JSON.parse(memory)
+//   : {
+//       order: [],
+//       objects: {},
+//     };
 
 function reductor(estado, accion) {
   switch (accion.tipo) {
@@ -49,10 +22,11 @@ function reductor(estado, accion) {
           {}
         ),
       };
+      //   localStorage.setItem("goal", JSON.stringify(newStatus));
       return newStatus;
     }
     case "create": {
-      const id = Math.random(); //accion.goal.id;
+      const id = accion.goal.id;
       const newStatus = {
         order: [...estado.order, id],
         objects: {
@@ -60,17 +34,39 @@ function reductor(estado, accion) {
           [id]: accion.goal,
         },
       };
+      //   localStorage.setItem("goal", JSON.stringify(newStatus));
       return newStatus;
     }
+    case "update": {
+      const id = accion.goal.id;
+      estado.objects[id] = {
+        ...estado.objects[id],
+        ...accion.goal,
+      };
+      const newStatus = { ...estado };
+      //   localStorage.setItem("goal", JSON.stringify(newStatus));
+      return newStatus;
+    }
+    case "borrar": {
+      const id = accion.id;
+      const newOrder = estado.order.filter((item) => item !== id);
+      delete estado.objects[id];
+      const newStatus = {
+        order: newOrder,
+        objects: estado.objects,
+      };
+      //   localStorage.setItem("goal", JSON.stringify(newStatus));
+      return newStatus;
+    }
+    default:
+      throw new Error();
   }
 }
-
-const goals = reductor(initialStatus, { tipo: "colocar", goals: listMock });
 
 export const Contexto = createContext(null);
 
 function Memory({ children }) {
-  const [estado, dispatch] = useReducer(reductor, goals);
+  const [estado, dispatch] = useReducer(reductor, initialStatus);
   return (
     <Contexto.Provider value={[estado, dispatch]}>{children}</Contexto.Provider>
   );

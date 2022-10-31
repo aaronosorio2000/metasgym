@@ -1,9 +1,12 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Contexto } from "../../services/Memory";
+import { borrarGoal, createGoal, updateGoal } from "../../services/Pedidos";
 import styles from "./Details.module.css";
 
 function Details() {
+  const { id } = useParams();
+
   const [form, setForm] = useState({
     details: "",
     events: 1,
@@ -18,17 +21,42 @@ function Details() {
 
   const { details, events, period, icon, goal, deadline, completed } = form;
   const onChange = (event, prop) => {
-    setForm((status) => ({ ...status, [prop]: event.target.value }));
+    setForm((estado) => ({ ...estado, [prop]: event.target.value }));
   };
-
-  useEffect(() => {
-    // console.log(form);
-  }, [form]);
 
   const navegar = useNavigate();
 
+  const goalMemory = estado.objects[id];
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    if (!goalMemory) {
+      return navegar("/list");
+    }
+    setForm(goalMemory);
+  }, [id, goalMemory, navegar]);
+
   const create = async () => {
-    dispatch({ tipo: "create", goal: form });
+    const newGoal = await createGoal();
+    dispatch({ tipo: "create", goal: newGoal });
+    navegar("/list");
+  };
+
+  const update = async () => {
+    const updatedGoal = await updateGoal();
+    dispatch({ tipo: "update", goal: updatedGoal });
+    navegar("/list");
+  };
+
+  const borrar = async () => {
+    const idBorrada = await borrarGoal();
+    dispatch({ tipo: "borrar", id: idBorrada });
+    navegar("/list");
+  };
+
+  const cancel = () => {
     navegar("/list");
   };
 
@@ -115,16 +143,32 @@ function Details() {
             onChange={(e) => onChange(e, "icon")}
           >
             {iconos.map((opcion) => (
-              <option value={opcion}>{opcion}</option>
+              <option key={opcion} value={opcion}>
+                {opcion}
+              </option>
             ))}
           </select>
         </label>
       </form>
       <div className={styles.buttons}>
-        <button className="button button--black" onClick={create}>
-          Crear
+        {!id && (
+          <button className="button button--black" onClick={create}>
+            Crear
+          </button>
+        )}
+        {id && (
+          <button className="button button--black" onClick={update}>
+            Actualizar
+          </button>
+        )}
+        {id && (
+          <button className="button button--red" onClick={borrar}>
+            Borrar
+          </button>
+        )}
+        <button className="button button--gray" onClick={cancel}>
+          Cancelar
         </button>
-        <button className="button button--gray">Cancelar</button>
       </div>
     </div>
   );

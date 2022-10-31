@@ -1,0 +1,10 @@
+{
+  "id": "1",
+  "details": "Correr por 30 minutos",
+  "period": "dia",
+  "events": 1,
+  "icon": "🏃",
+  "goal": 365,
+  "deadline": "2030-01-01",
+  "complete": 5
+}
