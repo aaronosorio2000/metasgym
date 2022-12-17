@@ -39,20 +39,20 @@ function Details() {
   }, [id, goalMemory, navegar]);
 
   const create = async () => {
-    const newGoal = await createGoal();
+    const newGoal = await createGoal(form);
     dispatch({ tipo: "create", goal: newGoal });
     navegar("/list");
   };
 
   const update = async () => {
-    const updatedGoal = await updateGoal();
+    const updatedGoal = await updateGoal(form);
     dispatch({ tipo: "update", goal: updatedGoal });
     navegar("/list");
   };
 
   const borrar = async () => {
-    const idBorrada = await borrarGoal();
-    dispatch({ tipo: "borrar", id: idBorrada });
+    await borrarGoal(form.id);
+    dispatch({ tipo: "borrar", id: form.id });
     navegar("/list");
   };
 

@@ -1,32 +1,44 @@
 export async function pedirGoals() {
-  const response = await fetch("/goals.json");
+  const response = await fetch("/api/goals");
   const goals = await response.json();
   return goals;
 }
 
-export async function pedirGoal() {
-  const response = await fetch("/goal.json");
+export async function pedirGoal(id) {
+  const response = await fetch(`/api/goals${id}`);
   const goal = await response.json();
   return goal;
 }
 
-export async function createGoal() {
-  const response = await fetch("/goal.json");
+export async function createGoal(goal) {
+  const response = await fetch("/api/goals", {
+    method: "POST",
+    body: JSON.stringify(goal),
+    headers: {
+      "content-type": "application/json; charset=UTF-8",
+    },
+  });
   const createdGoal = await response.json();
   console.log("Meta creada", createdGoal);
   return createdGoal;
 }
 
-export async function updateGoal() {
-  const response = await fetch("/goal.json");
+export async function updateGoal(goal) {
+  const response = await fetch(`/api/goals/${goal.id}`, {
+    method: "PUT",
+    body: JSON.stringify(goal),
+    headers: {
+      "content-type": "application/json; charset=UTF-8",
+    },
+  });
   const updatedGoal = await response.json();
   console.log("Meta actualizada", updatedGoal);
   return updatedGoal;
 }
 
-export async function borrarGoal() {
-  const response = await fetch("/goal.json");
-  const goalBorrada = await response.json();
-  console.log("Meta borrada", goalBorrada.id);
-  return goalBorrada.id;
+export async function borrarGoal(id) {
+  await fetch(`/api/goals/${id}`, {
+    method: "DELETE",
+  });
+  console.log("Meta borrada", id);
 }
