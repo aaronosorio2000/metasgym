@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { Contexto } from "../../services/Memory";
+import { ContextoGoals } from "../../../Memory/Goals";
 import Goal from "./Goal";
 
 function List() {
-  const [estado] = useContext(Contexto);
+  const [goals] = useContext(ContextoGoals);
 
   return (
     <>
-      {estado.order.map((id) => (
-        <Goal key={id} {...estado.objects[id]}></Goal>
+      {goals.order.map((id) => (
+        <Goal key={id} {...goals.objects[id]}></Goal>
       ))}
       <Outlet />
     </>

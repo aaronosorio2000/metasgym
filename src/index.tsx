@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import Memory from "./services/Memory";
+import GoalsMemory from "./Memory/Goals";
+import AuthMemory from "./Memory/Auth";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Memory>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Memory>
+    <AuthMemory>
+      <GoalsMemory>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </GoalsMemory>
+    </AuthMemory>
   </React.StrictMode>,
   document.getElementById("root")
 );

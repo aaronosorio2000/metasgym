@@ -1,16 +1,19 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import "./App.css";
 import Layout from "./components/shared/Layout";
-import List from "./components/list/list";
-import Details from "./components/new/Details";
+import List from "./components/private/list/list";
+import Details from "./components/private/new/Details";
 import NotFound from "./components/shared/NotFound";
 import Modal from "./components/shared/Modal";
 import { useContext, useEffect } from "react";
-import { pedirGoals } from "./services/Pedidos";
-import { Contexto } from "./services/Memory";
+import { pedirGoals } from "./services/Goals";
+import { ContextoGoals } from "./Memory/Goals";
+import Access from "./components/publico/access/access";
+import Register from "./components/publico/register/register";
+import { Authenticate } from "./components/shared/Authenticate";
 
 function App() {
-  const [, dispatch] = useContext(Contexto);
+  const [, dispatch] = useContext(ContextoGoals);
   useEffect(() => {
     (async () => {
       const goals = await pedirGoals();
@@ -20,21 +23,27 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<List />} />
-        <Route path="/list" element={<List />}>
-          <Route
-            path="/list/:id"
-            element={
-              <Modal>
-                <Details />
-              </Modal>
-            }
-          />
-        </Route>
-        <Route path="/new" element={<Details />} />
+      <Route path="/" element={<Navigate to="/list" />} />
+      <Route element={<Layout />}>
+        <Route path="/login" element={<Access />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route element={<Layout privado />}>
+        <Route element={<Authenticate />}>
+          <Route path="/list" element={<List />}>
+            <Route
+              path="/list/:id"
+              element={
+                <Modal>
+                  <Details />
+                </Modal>
+              }
+            />
+          </Route>
+          <Route path="/new" element={<Details />} />
+        </Route>
+      </Route>
     </Routes>
   );
 }
