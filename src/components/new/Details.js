@@ -51,7 +51,8 @@ function Details() {
   };
 
   const borrar = async () => {
-    await borrarGoal(form.id);
+    const id = form.id;
+    await borrarGoal(id);
     dispatch({ tipo: "borrar", id: form.id });
     navegar("/list");
   };

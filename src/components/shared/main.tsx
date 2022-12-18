@@ -1,9 +1,12 @@
 import styles from "./Main.module.css";
-import Vinculo from "./link";
+import Vinculo from "./Vinculo";
 import { ReactComponent as ListSVG } from "../../img/lista.svg";
 import { ReactComponent as NuevaSVG } from "../../img/nueva.svg";
 
-function Main({ children }) {
+interface MainProps {
+  children: React.ReactNode;
+}
+function Main({ children }: MainProps) {
   return (
     <div className={styles.principal}>
       <aside className={styles.aside}>
