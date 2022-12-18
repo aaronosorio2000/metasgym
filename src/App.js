@@ -16,7 +16,7 @@ function App() {
       const goals = await pedirGoals();
       dispatch({ tipo: "colocar", goals });
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
