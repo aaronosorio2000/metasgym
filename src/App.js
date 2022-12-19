@@ -25,24 +25,24 @@ function App() {
     <Routes>
       <Route path="/" element={<Navigate to="/list" />} />
       <Route element={<Layout />}>
-        {/* <Route path="/login" element={<Access />} /> */}
-        {/* <Route path="/signup" element={<Register />} /> */}
+        <Route path="/login" element={<Access />} />
+        <Route path="/signup" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Route>
-      <Route element={<Layout />}>
-        {/* <Route element={<Authenticate />}> */}
-        <Route path="/list" element={<List />}>
-          <Route
-            path="/list/:id"
-            element={
-              <Modal>
-                <Details />
-              </Modal>
-            }
-          />
+      <Route element={<Layout privado />}>
+        <Route element={<Authenticate />}>
+          <Route path="/list" element={<List />}>
+            <Route
+              path="/list/:id"
+              element={
+                <Modal>
+                  <Details />
+                </Modal>
+              }
+            />
+          </Route>
+          <Route path="/new" element={<Details />} />
         </Route>
-        <Route path="/new" element={<Details />} />
-        {/* </Route> */}
       </Route>
     </Routes>
   );
