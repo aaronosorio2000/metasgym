@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import { ReactComponent as ProfileSVG } from "../../img/perfil.svg";
 import { ReactComponent as LogoSVG } from "../../img/logo.svg";
-import Vinculo from "./Vinculo";
+import Vinculo from "./link";
 
 function Header() {
   return (

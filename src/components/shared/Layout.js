@@ -1,21 +1,17 @@
 // import List from "./components/list/list";
 // import Details from "./components/new/Details";
 import { Outlet } from "react-router-dom";
-import Aside from "./Aside";
 import Footer from "./footer";
 import Header from "./header";
-import styles from "./Layout.module.css";
+import Main from "./main";
 
-function Layout({ privado }) {
+function Layout() {
   return (
     <>
       <Header></Header>
-      <main className={styles.main}>
-        {privado && <Aside />}
-        <section className={styles.section}>
-          <Outlet></Outlet>
-        </section>
-      </main>
+      <Main>
+        <Outlet></Outlet>
+      </Main>
       <Footer></Footer>
     </>
   );

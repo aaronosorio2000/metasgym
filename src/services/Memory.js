@@ -63,13 +63,13 @@ function reductor(estado, accion) {
   }
 }
 
-export const ContextoGoals = createContext(null);
+export const Contexto = createContext(null);
 
-function GoalsMemory({ children }) {
-  const value = useReducer(reductor, initialStatus);
+function Memory({ children }) {
+  const [estado, dispatch] = useReducer(reductor, initialStatus);
   return (
-    <ContextoGoals.Provider value={value}>{children}</ContextoGoals.Provider>
+    <Contexto.Provider value={[estado, dispatch]}>{children}</Contexto.Provider>
   );
 }
 
-export default GoalsMemory;
+export default Memory;

@@ -1,17 +1,7 @@
 import { Link } from "react-router-dom";
-import { GoalType } from "../../../types/GoalType";
 import styles from "./Goal.module.css";
 
-interface GoalProps extends GoalType {}
-function Goal({
-  id,
-  icon,
-  events,
-  period,
-  details,
-  completed,
-  goal,
-}: GoalProps) {
+function Goal({ id, icon, events, period, details, completed, goal }) {
   return (
     <Link to={`/list/${id}`} className={styles.goal + " card"}>
       <div className="flex items-center">

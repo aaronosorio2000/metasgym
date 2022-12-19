@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ContextoGoals } from "../../../Memory/Goals";
-import { borrarGoal, createGoal, updateGoal } from "../../../services/Goals";
+import { Contexto } from "../../services/Memory";
+import { borrarGoal, createGoal, updateGoal } from "../../services/Pedidos";
 import styles from "./Details.module.css";
 
 function Details() {
@@ -17,7 +17,7 @@ function Details() {
     completed: 0,
   });
 
-  const [estado, dispatch] = useContext(ContextoGoals);
+  const [estado, dispatch] = useContext(Contexto);
 
   const { details, events, period, icon, goal, deadline, completed } = form;
   const onChange = (event, prop) => {
@@ -51,8 +51,7 @@ function Details() {
   };
 
   const borrar = async () => {
-    const id = form.id;
-    await borrarGoal(id);
+    await borrarGoal(form.id);
     dispatch({ tipo: "borrar", id: form.id });
     navegar("/list");
   };
