@@ -46,5 +46,6 @@
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.1"
-  }
+  },
+  "proxy": "https://api-production-0143.up.railway.app/"
 }
