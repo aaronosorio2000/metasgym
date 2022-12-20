@@ -1,17 +1,19 @@
+const url = "https://api-production-0143.up.railway.app/";
+
 export async function pedirGoals() {
-  const response = await fetch("/api/goals");
+  const response = await fetch(url + "/api/goals");
   const goals = await response.json();
   return goals;
 }
 
 export async function pedirGoal(id) {
-  const response = await fetch(`/api/goals${id}`);
+  const response = await fetch(url + `/api/goals${id}`);
   const goal = await response.json();
   return goal;
 }
 
 export async function createGoal(goal) {
-  const response = await fetch("/api/goals", {
+  const response = await fetch(url + "/api/goals", {
     method: "POST",
     body: JSON.stringify(goal),
     headers: {
@@ -24,7 +26,7 @@ export async function createGoal(goal) {
 }
 
 export async function updateGoal(goal) {
-  const response = await fetch(`/api/goals/${goal.id}`, {
+  const response = await fetch(url + `/api/goals/${goal.id}`, {
     method: "PUT",
     body: JSON.stringify(goal),
     headers: {
@@ -37,7 +39,7 @@ export async function updateGoal(goal) {
 }
 
 export async function borrarGoal(id) {
-  await fetch(`/api/goals/${id}`, {
+  await fetch(url + `/api/goals/${id}`, {
     method: "DELETE",
   });
   console.log("Meta borrada", id);
