@@ -1,4 +1,4 @@
-const url = "https://api-production-0143.up.railway.app/";
+const url = "https://api-production-0143.up.railway.app";
 
 export async function pedirGoals() {
   const response = await fetch(url + "/api/goals");
