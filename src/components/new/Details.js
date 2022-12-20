@@ -101,7 +101,7 @@ function Details() {
               value={period}
               onChange={(e) => onChange(e, "period")}
             >
-              <option value="día">al día</option>
+              <option value="dia">al día</option>
               <option value="semana">a la semana</option>
               <option value="mes">al mes</option>
               <option value="año">al año</option>
