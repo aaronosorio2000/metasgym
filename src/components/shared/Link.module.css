@@ -7,5 +7,5 @@
 }
 
 .text {
-  @apply ml-2 text-sm font-semibold text-gray-900;
+  @apply hidden sm:block ml-2 text-sm font-semibold text-gray-900;
 }
